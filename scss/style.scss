@@ -1,0 +1,9 @@
+@import './variables/variables.scss';
+
+body {
+  background-color: blue;
+
+  p {
+    color: $black-color;
+  }
+}

@@ -8,28 +8,26 @@ A simple Gulp 4 starter kit
 4. Type `npm i gulp -D` to install gulp module.
 5. Create `gulpfile.js` with folowing code `const { src, dest } = require('gulp');`
 
-## Project structure
-`/build` - final result
+## Folder structure
+`/scss` - keeps all scss files
 
-`/src` - development files
+`/css` - appears after compilation
 
 ## CSS
 Instead common CSS we will use SCSS preprocessor
 
 ### SCSS file structure 
 
-`src/styles` - keeps all scss files.
+`scss/style.scss` - main scss file
 
-`src/pages/common/` - keeps all scss modules (header, footer)
+`scss/common/` - keeps all scss modules (header, footer)
 
-`src/pages/common/variables.scss` - keeps all variables 
+`scss/common/variables.scss` - keeps all variables 
 
-`src/pages/common/mixins/` - reusabale styles
-
-`src/pages/style.scss` - main scss file
+`scss/common/mixins.scss` - reusabale styles
 
 ### SCSS plugins 
-1. Install scss-plugin `npm i node-sass gulp-sass -D`
+1. Install scss plugins `npm i node-sass gulp-sass plumber -D`
 2. Create a function that changes scss code to css  
 3. Add to the `gulpfile.js` following  code (example):
 ```
@@ -45,31 +43,31 @@ exports.styles = styles;                // create a new task from function
 ```
 
 ## HTML 
-Instead common HTML we will use Pug preprocessor
 
-### Pug file structure 
-
-`src/pages` - keeps all pug files.
-
-`src/pages/blocks` - all pug modules (header, footer)
-
-`src/pages/blocks/layout.pug` -  main layout file.
-
-`src/pages/index.pug` 
-
-### Pug plugins 
-1. Install pug-plugin `npm i gulp-pug -D`
-2. Create a function that changes pug to html code 
-3. Add to the `gulpfile.js` Pug task
+Create main `index.html` 
 
 ### Reloading
 1. Add { watch } to the line `const { src, dest } = require('gulp');` in `gulpfile.js` 
 2. Create a function
 ```
 const watching = () => {
-  watch(['./src/styles/**/*.scss'], styles)
+  watch(['./src/styles/**/*.scss'], styles)                // watches for changes in all scss files and launches function `style`
+  watch(['./*.html']).on('change', browserSync.reload)     // watches for changes in html file and reloads it
+  watch(['./js/**/*.js']).on('change', browserSync.reload) // watches for changes in js files and reloads it
 }
 ```
 3. Add plugin for fast reloading. Type `npm i browser-sync -D`
 4. Make a task 
-
+```
+const browsersync = () => {
+  browserSync.init({
+    server: {
+      baseDir: './',
+    }
+  });
+}
+```
+5. Add `exports.default` for parallel executions of the functions 
+```
+exports.default = parallel(browsersync, watching);
+```
