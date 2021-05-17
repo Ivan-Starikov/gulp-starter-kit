@@ -1,7 +1,13 @@
 # gulp-starter-kit
 A simple Gulp 4 starter kit 
 
-## First steps
+## Create new progect (with current gulp kit)
+Type following commands: 
+1. git clone https://github.com/poezdev/gulp-starter-kit
+2. `npm i gulp-cli -g` 
+2. `npm i gulp gulp-sass node-sass gulp-plumber browser-sync -D`
+
+## First steps (create new gulp kit) 
 1. Install Node.js and npm. Check for the installation by command `node -v` 
 2. Open the project folder and type `npm init` to create `package.json` file
 3. Type `npm i gulp-cli -g` to install the gulp command line globally
