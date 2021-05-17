@@ -3,7 +3,7 @@ A simple Gulp 4 starter kit
 
 ## Create new progect (with current gulp kit)
 Type following commands: 
-1. git clone https://github.com/poezdev/gulp-starter-kit
+1. `git clone https://github.com/poezdev/gulp-starter-kit`
 2. `npm i gulp-cli -g` 
 2. `npm i gulp gulp-sass node-sass gulp-plumber browser-sync -D`
 
